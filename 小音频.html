@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>播放器</title>
+	<style>
+		body,input{margin: 0;padding: 0;}
+		#wrap{margin: 300px auto;width: 800px;height: 600px;padding: 0 10px 10px;}
+		input{width: 60px;height: 30px;float: left;margin-left: 20px;}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<video controls id="mp4">
+			<source src="鬼步舞.mp4">
+			<source src="互联网.mp4">
+		</video>
+		<input type="button" value="">
+		<input type="button" value="播放">
+		<input type="button" value="">
+		<input type="button" value="00:00">
+		<input type="button" value="00:00">
+	</div>
+	<script>
+		window.onload = function(){
+			var Mp4 = document.getElementById('mp4');
+			var btns = document.getElementsByTagName('input');
+			var timer = null;
+			var oBture = true;
+			btns[0].value = "切换";
+			btns[0].onclick = function(){
+				if(oBture){
+					Mp4.src = "互联网.mp4";
+					Mp4.load();
+					oBture = false;
+				}else{
+					Mp4.src = "鬼步舞.mp4";
+					Mp4.load();
+					oBture = true;
+				}
+				
+			}
+			btns[1].onclick = function(){
+				if(Mp4.paused){
+					Mp4.play();
+					this.value = "暂停";
+					timer = setInterval(nowTime,30);
+				}else{
+					Mp4.pause();
+					this.value = "播放";
+					clearInterval(timer);
+				}
+			};
+			btns[2].value = "静音";
+			btns[2].onclick = function(){
+				if(Mp4.muted){
+					Mp4.volume = 1;
+					this.value = "静音";
+					Mp4.muted = false;
+				}else{
+					Mp4.volume = 0;
+					this.value = "取消静音";
+					Mp4.muted = true;
+				}
+			};
+			btns[3].value = changeTime(Mp4.currentTime);
+			btns[4].value = changeTime(Mp4.duration);	
+			
+			function changeTime(oTime){
+				oTime = parseInt(oTime);
+				var H = toZum(Math.floor(oTime/3600));
+				var m = toZum(Math.floor(oTime%3600/60));
+				var s = toZum(Math.floor(oTime%60));
+				return H+':'+m+':'+s+'';
+
+			};
+			function toZum(num){
+				if(num<=9){
+					return '0'+num;
+				}else{
+					return num;
+				}
+			};
+			function nowTime(){
+				btns[3].value = changeTime(Mp4.currentTime);
+			}
+
+		}
+	</script>
+</body>
+</html>

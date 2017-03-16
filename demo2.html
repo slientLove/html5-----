@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>视频</title>
+</head>
+<body>
+	<div>
+		<video controls id="mp4">
+			<source src="鬼步舞.mp4">
+			<source src="互联网.mp4">
+		</video>
+	</div>
+	<input id="btn"type="button" value="重新加载">
+	<script>
+		window.onload = function(){
+			var Mp4 = document.getElementById('mp4');
+			var btn = document.getElementById('btn');
+			var oSource = document.getElementsByTagName('source');
+			btn.onclick = function(){
+				Mp4.src = "鬼步舞.mp4";
+				Mp4.src = "互联网.mp4";
+				Mp4.load();				// 视频拥有load()方法，实现重新加载
+			}
+			Mp4.onmouseover = function(){
+				this.play();		// 鼠标移入开始播放
+			}
+			Mp4.onmouseout = function(){
+				this.pause();		// 鼠标移开则停止播放
+			}
+
+		}
+	</script>
+</body>
+</html>

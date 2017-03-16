@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>视频</title>
+	<style>
+		
+	</style>
+	<script>
+		window.onload = function(){
+			var vido = document.getElementById("vido");
+			var canv = document.getElementById("canv");
+			var oCanv = canv.getContext("2d");    // 创建一个canvas画图
+			
+			canv.width = vido.videoWidth;
+			canv.height = vido.videoHeight;
+			console.log(canv.width);
+			console.log(canv.height);
+			setInterval(function(){
+
+				oCanv.drawImage(vido,0,0);   // 将视频的源作为oCanv的画布内容
+			},30);
+		
+		}
+	</script>
+</head>
+<body>
+	<video controls id="vido" >
+		<source src="互联网.mp4" >
+	</video>
+	<canvas id="canv"></canvas>
+</body>
+</html>

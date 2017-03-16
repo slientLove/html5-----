@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>音频</title>
+</head>
+<body>
+	<div>
+		<!-- 默认是没有控制样式的，需要添加上去 -->
+		<audio id="mp3" controls src="1.mp3"></audio>  
+		<!-- 样式各个浏览器的解析都不相同 -->  
+	</div>
+	<script>
+		window.onload = function(){
+			var Mp3 = document.getElementById('mp3');
+
+			console.log(Mp3.duration);		// 音频播放总时间
+			console.log(Mp3.volume);    	// 音量与正常的比率
+			console.log(Mp3.paused);        // 是否是暂停的
+			console.log(Mp3.ended);         // 是否播放完毕
+			console.log(Mp3.error);          // 播放是否发生异常
+			console.log(Mp3.currentSrc);      // 播放了多少时间
+		}
+	</script>
+</body>
+</html>
